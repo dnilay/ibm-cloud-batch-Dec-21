@@ -21,7 +21,8 @@ public class Main {
         int result=x;
 
         Beer myBeer=new Beer();
-        String[] str=UUID.randomUUID().toString().split("-");
+        System.out.println(Beer.getCounter());
+      /*  String[] str=UUID.randomUUID().toString().split("-");
         myBeer.setBeerId(str[4]);
         System.out.println("Enter Beer Name: ");
         String name=scanner.next();
@@ -32,7 +33,10 @@ public class Main {
         System.out.println("Enter Stock: ");
         int stock=scanner.nextInt();
         myBeer.setUnitInStock(stock);
-        System.out.println(myBeer);
+        System.out.println(myBeer);*/
+
+        Beer myBeer1=new Beer();
+        System.out.println(Beer.getCounter());
 
     }
 }

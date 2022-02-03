@@ -1,13 +1,15 @@
 package com.example;
 
 public class Beer {
+    //instance variables =================================================
     private String beerId;
     private String beerName;
     private Double costPerUnit;
     private Integer unitInStock;
+    private static Integer counter=0;
 
     public Beer() {
-
+        counter++;
 
     }
 
@@ -57,5 +59,11 @@ public class Beer {
                 " beerName= " + beerName  +
                 " costPerUnit= " + costPerUnit +
                 " unitInStock= " + unitInStock ;
+    }
+
+
+    public static Integer getCounter() {
+
+        return counter;
     }
 }
