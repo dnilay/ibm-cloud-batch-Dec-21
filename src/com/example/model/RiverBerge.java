@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class RiverBerge extends Vehicle{
+public class RiverBerge implements MyVehicle{
 
     private int numberOfTurbine;
     private  String shipId;

@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @ToString
 @AllArgsConstructor
-public class RoadTruck extends Vehicle{
+public class RoadTruck /*extends Vehicle*/ implements MyVehicle,MyInterface{
 
     private int numberOfWhees;
     private String truckId;
@@ -25,5 +25,7 @@ public class RoadTruck extends Vehicle{
     public double calculateFuelEfficiency(double fuelConsumed) {
         return distanceCovered/fuelConsumed;
     }
+
+
 }
 

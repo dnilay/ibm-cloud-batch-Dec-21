@@ -12,20 +12,20 @@ import lombok.ToString;
 public class Company {
     private String companyId;
     private String companyName;
-    private Vehicle[] vehicles;
+    private MyVehicle[] vehicles;
 
     {
-        vehicles=new Vehicle[4];
+        vehicles=new MyVehicle[4];
     }
 
-    public void addVehicle(Vehicle[] vehicles)
+    public void addVehicle(MyVehicle[] vehicles)
     {
         this.vehicles=vehicles;
     }
 
     public void displayVehicleDetails()
     {
-        for(Vehicle v: vehicles)
+        for(MyVehicle v: vehicles)
         {
             if (v instanceof RoadTruck)
             {
