@@ -25,37 +25,37 @@ public class Main {
         int age=0;
         String city=null;
         City myCity=null;
+        float assetValue=0.0f;
         try {
+            System.out.println(100/age);
             System.out.print("Enter Zipcode: ");
             zipcode = scanner.nextInt();
             System.out.print("Enter Contact Number: ");
             contact=scanner.nextInt();
             System.out.print("Enter Age: ");
             age=scanner.nextInt();
-        }
-
-       /* catch (InputMismatchException inputMismatchException)
-        {
-            System.err.println("invalid input."+inputMismatchException.toString());
-
-        }*/
-        catch (RuntimeException e)
-        {
-            System.err.println("invalid input."+e.toString());
-        }
-
-        try {
             System.out.println("City Name: ");
             city=scanner.next();
             myCity=City.valueOf(city);
-
+            System.out.print("Enter Asset Value: ");
+            assetValue= scanner.nextFloat();
         }
-        catch (Exception e)
+
+        catch (NumberFormatException | InputMismatchException | ArithmeticException exception)
         {
-            e.printStackTrace();
+            System.out.println(exception.toString()+" Exception Occured....");
+            //exception.printStackTrace();
         }
 
-        Person person=new Person(new Random().nextInt(1000),name,new Address(address1,address2,zipcode,contact,myCity),age);
+
+
+
+
+        finally {
+            System.out.println("I Am In Finally");
+        }
+
+        Person person=new Person(new Random().nextInt(1000),name,new Address(address1,address2,zipcode,contact,myCity),age,assetValue);
 
         System.out.println(person);
 
