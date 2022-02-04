@@ -13,5 +13,6 @@ public class Address {
     private String addressLine2;
     private int zipCode;
     private int contactNumber;
+    private City city;
 
 }

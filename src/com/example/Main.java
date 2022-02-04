@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.data.Address;
+import com.example.data.City;
 import com.example.data.Person;
 
 import java.util.InputMismatchException;
@@ -22,6 +23,8 @@ public class Main {
         int zipcode=0;
         int contact=0;
         int age=0;
+        String city=null;
+        City myCity=null;
         try {
             System.out.print("Enter Zipcode: ");
             zipcode = scanner.nextInt();
@@ -41,9 +44,18 @@ public class Main {
             System.err.println("invalid input."+e.toString());
         }
 
+        try {
+            System.out.println("City Name: ");
+            city=scanner.next();
+            myCity=City.valueOf(city);
 
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
-        Person person=new Person(new Random().nextInt(1000),name,new Address(address1,address2,zipcode,contact),age);
+        Person person=new Person(new Random().nextInt(1000),name,new Address(address1,address2,zipcode,contact,myCity),age);
 
         System.out.println(person);
 
