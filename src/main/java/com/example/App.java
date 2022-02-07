@@ -22,7 +22,7 @@ public class App
         set.add(9);
         set.add(9);
         System.out.println(set);*/
-        Comparator nameComparator=new NameComparator();
+       /* Comparator nameComparator=new NameComparator();
         Set<Employee> employees=new TreeSet<>(nameComparator);
         employees.add(new Employee(new Random().nextInt(1000),"John","Doe","john@email.com",1000));
         employees.add(new Employee(new Random().nextInt(1000),"Marry","Public","marry@email.com",200));
@@ -38,9 +38,15 @@ public class App
         }
 
         //printing using enhanched for loop
-      /*  for(Employee s:employees)
+      *//*  for(Employee s:employees)
         {
             System.out.println(s);
         }*/
+
+        Set<Integer> set=new HashSet<>();
+        set.add(10);
+        set.add(20);
+        set.add(30);
+        System.out.println(set.contains(50));
     }
 }
