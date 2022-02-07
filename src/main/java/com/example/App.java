@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.model.Employee;
+import com.example.model.SalaryComparator;
 
 import java.util.*;
 
@@ -20,12 +21,13 @@ public class App
         set.add(9);
         set.add(9);
         System.out.println(set);*/
-        Set<Employee> employees=new TreeSet<>();
-        employees.add(new Employee(new Random().nextInt(1000),"John","Doe","john@email.com"));
-        employees.add(new Employee(new Random().nextInt(1000),"Marry","Public","marry@email.com"));
-        employees.add(new Employee(new Random().nextInt(1000),"Sachin","Tendulkar","sachin@email.com"));
-        employees.add(new Employee(new Random().nextInt(1000),"Rahul","Dravid","rahul@email.com"));
-        employees.add(new Employee(new Random().nextInt(1000),"John","Pareera","john1@email.com"));
+        Comparator salaryComparator=new SalaryComparator();
+        Set<Employee> employees=new TreeSet<>(salaryComparator);
+        employees.add(new Employee(new Random().nextInt(1000),"John","Doe","john@email.com",1000));
+        employees.add(new Employee(new Random().nextInt(1000),"Marry","Public","marry@email.com",200));
+        employees.add(new Employee(new Random().nextInt(1000),"Sachin","Tendulkar","sachin@email.com",3021));
+        employees.add(new Employee(new Random().nextInt(1000),"Rahul","Dravid","rahul@email.com",1021));
+        employees.add(new Employee(new Random().nextInt(1000),"John","Pareera","john1@email.com",200));
      //   System.out.println(employees);
 
         Iterator<Employee> iterator= employees.iterator();

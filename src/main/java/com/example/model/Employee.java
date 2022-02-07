@@ -7,14 +7,15 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Employee implements Comparable{
+public class Employee {
 
     private int employeeId;
     private String firstName;
     private String lastName;
     private String email;
+    private double salary;
 
-    @Override
+    /*@Override
     public int compareTo(Object o) {
         Employee employee=(Employee)o;
         if (this.getEmployeeId()>employee.getEmployeeId())
@@ -29,5 +30,5 @@ public class Employee implements Comparable{
             return 0;
         }
 
-    }
+    }*/
 }
