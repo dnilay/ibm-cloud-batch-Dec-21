@@ -5,12 +5,10 @@ import com.example.exception.InvalidEmployeeException;
 import com.example.model.Employee;
 import com.example.repo.EmployeeRepository;
 import com.example.repo.EmployeeRepositoryImpl;
-
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
-
 public class EmployeeServiceImpl implements EmployeeService{
     private static Scanner scanner=new Scanner(System.in);
     private EmployeeRepository employeeRepository;
