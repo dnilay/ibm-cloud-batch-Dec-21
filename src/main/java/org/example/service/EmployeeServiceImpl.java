@@ -32,6 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public void deleteEmployee(Integer employeeId) throws SQLException {
+        employeeRepository.deleteEmployee(employeeId);
 
     }
 

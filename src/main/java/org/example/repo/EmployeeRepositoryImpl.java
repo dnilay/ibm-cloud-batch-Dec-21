@@ -47,7 +47,16 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public void deleteEmployee(Integer employeeId) throws SQLException {
-
+        preparedStatement=connection.prepareStatement("delete from employees where id=?");
+        preparedStatement.setInt(1,employeeId);
+        int result= preparedStatement.executeUpdate();
+        if (result==0)
+        {
+            System.out.println("no such record.");
+        }
+        else {
+            System.out.println("deletion successfull");
+        }
     }
 
     @Override
