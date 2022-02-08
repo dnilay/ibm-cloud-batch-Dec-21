@@ -37,6 +37,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee findEmployeeById(Integer employeeId) throws SQLException {
-        return null;
+        Employee employee=null;
+
+            employee=employeeRepository.findEmployeeById(employeeId);
+            if (employee==null)
+            {
+                throw new NullPointerException("no such element found");
+            }
+     return employee;
     }
 }

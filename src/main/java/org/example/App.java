@@ -27,16 +27,22 @@ public class App
 
 
         try {
-            System.out.print("Enter First Name: ");
+            /*System.out.print("Enter First Name: ");
             String firstName=bufferedReader.readLine();
             System.out.print("Enter Last Name: ");
             String lastName=bufferedReader.readLine();
             System.out.print("Enter email: ");
             String email=bufferedReader.readLine();
             Employee employee=employeeService.createEmployee(new Employee(new Random().nextInt(1000),firstName,lastName,email));
-            System.out.println(employee);
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
+            System.out.println(employee);*/
+            System.out.print("Enter Id: ");
+            int id=Integer.parseInt(bufferedReader.readLine());
+            Employee employee=employeeService.findEmployeeById(id);
+
+                System.out.println(employee);
+
+        } catch (IOException | SQLException |NullPointerException e) {
+            System.out.println(e.getMessage());
         }
 
 

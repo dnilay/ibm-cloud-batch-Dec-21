@@ -4,6 +4,7 @@ import org.example.Employee;
 import org.example.factory.MyConnection;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository{
@@ -41,7 +42,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public Employee updateEmployee(Integer employeeId) throws SQLException {
-        return null;
+       return null;
     }
 
     @Override
@@ -51,6 +52,23 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public Employee findEmployeeById(Integer employeeId)throws SQLException {
-        return null;
+        preparedStatement=connection.prepareStatement("select * from employees where id=?");
+        List<Employee> list=new ArrayList<>();
+        preparedStatement.setInt(1,employeeId);
+        resultSet= preparedStatement.executeQuery();
+        while (resultSet.next())
+        {
+            list.add(new Employee(resultSet.getInt(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4) ));
+
+        }
+        if (list.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return list.get(0);
+        }
+
     }
 }
