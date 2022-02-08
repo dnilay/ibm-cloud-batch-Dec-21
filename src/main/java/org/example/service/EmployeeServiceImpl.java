@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee updateEmployee(Integer employeeId) throws SQLException {
-        return null;
+        return employeeRepository.updateEmployee(employeeId);
     }
 
     @Override

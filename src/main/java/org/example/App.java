@@ -38,8 +38,10 @@ public class App
             System.out.print("Enter Id: ");
             int id=Integer.parseInt(bufferedReader.readLine());
             //Employee employee=employeeService.findEmployeeById(id);
-                employeeService.deleteEmployee(id);
+               // employeeService.deleteEmployee(id);
               //  System.out.println(employee);
+            Employee employee=employeeService.updateEmployee(id);
+            System.out.println("Updated Employee Details: "+employee);
 
         } catch (IOException | SQLException |NullPointerException e) {
             System.out.println(e.getMessage());

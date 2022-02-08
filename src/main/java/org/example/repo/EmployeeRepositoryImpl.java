@@ -6,6 +6,7 @@ import org.example.factory.MyConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository{
     private MyConnection myConnection;
@@ -13,7 +14,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     private Statement statement;
     private PreparedStatement preparedStatement;
     private Connection connection;
-
+    private static Scanner scanner=new Scanner(System.in);
     public EmployeeRepositoryImpl() {
         myConnection=MyConnection.getObject();
         try {
@@ -42,7 +43,35 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public Employee updateEmployee(Integer employeeId) throws SQLException {
-       return null;
+
+        Employee employee=findEmployeeById(employeeId);
+        if (employee==null)
+        {
+            System.out.println("employee with the id "+employeeId+" not found");
+        }
+        else
+        {
+            System.out.println("found: "+employee);
+            System.out.print("Enter New First Name: ");
+            String firstName=scanner.next();
+            System.out.print("Enter New Last Name: ");
+            String lastName=scanner.next();
+            System.out.print("Enter New Email Name: ");
+            String email=scanner.next();
+            preparedStatement= connection.prepareStatement("update  employees set first_name=? , last_name=? , email=? where id=?");
+            preparedStatement.setString(1,firstName);
+            preparedStatement.setString(2,lastName);
+            preparedStatement.setString(3,email);
+            preparedStatement.setInt(4,employeeId);
+            preparedStatement.executeUpdate();
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
+            employee.setEmail(email);
+            employee.setEmployeeId(employeeId);
+
+        }
+
+       return employee;
     }
 
     @Override
