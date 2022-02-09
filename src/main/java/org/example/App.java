@@ -17,6 +17,9 @@ public class App
         //Customer customer1=context.getBean("customer",Customer.class);
         //System.out.println(customer==customer1);
 		System.out.println(customer);
+            Coach myCoach=context.getBean("theCoach",Coach.class);
+            System.out.println(myCoach.getDailyWorkout());
+            System.out.println(myCoach.getDailyFortune());
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

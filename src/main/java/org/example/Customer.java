@@ -4,11 +4,14 @@ public class Customer {
 	private int customerId;
 	private String customerName;
 	private String customerEmail;
-
+	private Address address;
 	public Customer() {
 
 	}
-
+//Dependency Injection(Constructor)
+	public Customer(Address address) {
+		this.address = address;
+	}
 /*	public Customer(int customerId) {
 		this.customerId = customerId;
 	}
@@ -47,7 +50,7 @@ public class Customer {
 	@Override
 	public String toString() {
 
-		return "Customer ID: " + customerId + " Customer Name: " + customerName + " Customer Email: " + customerEmail;
+		return "Customer ID: " + customerId + " Customer Name: " + customerName + " Customer Email: " + customerEmail+" Address: \n"+address;
 	}
 
 }
