@@ -8,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
 import java.util.Random;
 
 public class Tester {
@@ -39,6 +38,7 @@ public class Tester {
             String email=bufferedReader.readLine();
             Employee employee=getEmployeeService().createEmployee(new Employee(new Random().nextInt(1000),fName,lName,email));
             System.out.println("Employee Created: "+employee);
+
         }
         catch (Exception e)
         {

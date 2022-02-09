@@ -1,11 +1,13 @@
 package org.example.repo;
 
 import org.example.model.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.List;
-
+@Component("employeeRepository")
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     private final DataSource dataSource;
@@ -13,6 +15,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private PreparedStatement preparedStatement;
     private Statement statement;
     private ResultSet resultSet;
+    @Autowired
     public EmployeeRepositoryImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
