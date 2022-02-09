@@ -3,6 +3,7 @@ package org.example;
 import org.example.model.Employee;
 import org.example.service.EmployeeService;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.BufferedReader;
@@ -16,7 +17,9 @@ public class Tester {
     private  static EmployeeService getEmployeeService()
     {
         try {
-            ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext2.xml");
+           // ApplicationContext applicationContext=new ClassPathXmlApplicationContext("applicationContext2.xml");
+           // employeeService=applicationContext.getBean("employeeService",EmployeeService.class);
+            AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
             employeeService=applicationContext.getBean("employeeService",EmployeeService.class);
         }
         catch (Exception e)
