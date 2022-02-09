@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean name="customer" class="org.example.Customer">
-<constructor-arg name="customerId" value="1"/>
-<constructor-arg name="customerName" value="John Doe"/>
-<constructor-arg name="customerEmail" value="john@email.com"/>
+<bean name="customer" class="org.example.Customer" >
+	<property name="customerId" value="100"/>
+	<property name="customerName" value="Marry"/>
+	<property name="customerEmail" value="marry@email.com"/>
+
+
 </bean>
 </beans>

@@ -14,8 +14,9 @@ public class App
         try {
         	ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
         Customer customer=context.getBean("customer",Customer.class);
-        System.out.println(customer);
-			
+        //Customer customer1=context.getBean("customer",Customer.class);
+        //System.out.println(customer==customer1);
+		System.out.println(customer);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
