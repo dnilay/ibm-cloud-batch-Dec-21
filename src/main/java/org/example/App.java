@@ -23,14 +23,14 @@ public class App
             SessionFactory sessionFactory=new Configuration().configure().addAnnotatedClass(Customer.class)
                     .buildSessionFactory();
             Session session=sessionFactory.openSession();
-           /* Customer customer=new Customer("John Doe");
+            Customer customer=new Customer("Rahul");
             session.getTransaction().begin();
             session.save(customer);
             session.getTransaction().commit();
-            System.out.println("customer saved... ");*/
+            System.out.println("customer saved... ");
             session.getTransaction().begin();
             TypedQuery query= session.createQuery("FROM Customer C WHERE C.customerName=:cName");
-            query.setParameter("cName","John1 Doe");
+            query.setParameter("cName","Rahul");
             List<Customer> list=query.getResultList();
             session.getTransaction().commit();
             Iterator<Customer> iterator= list.iterator();
@@ -40,9 +40,15 @@ public class App
             }
 
             session.getTransaction().begin();
-            Customer customer=session.find(Customer.class,3);
+             customer=session.find(Customer.class,6);
             session.getTransaction().commit();
             System.out.println(customer);
+            session.getTransaction().begin();
+            //session.remove(customer);
+            customer.setCustomerName("Marry Public");
+            session.merge(customer);
+            System.out.println(customer);
+            session.getTransaction().commit();
         }
         catch (Exception e)
         {
