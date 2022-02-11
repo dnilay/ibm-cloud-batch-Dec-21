@@ -6,7 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,7 +24,7 @@ public class App
            AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
            SessionFactory sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
            Session session= sessionFactory.openSession();
-           Student tempStudent = new Student("Marry","Public","marry@luv2code.com");
+          /* Student tempStudent = new Student("Marry","Public","marry@luv2code.com");
            Set<String> theImages = tempStudent.getImages();
 
            theImages.add("photo1.jpg");
@@ -40,13 +43,29 @@ public class App
            session.persist(tempStudent);
 
            //commit the transaction
+           session.getTransaction().commit();*/
+           Student student=session.find(Student.class,2);
+         /*  if(student==null)
+           {
+               throw new IllegalArgumentException("student not found");
+           }
+           System.out.println(student);
+           session.getTransaction().begin();
+           session.delete(student);
            session.getTransaction().commit();
-           System.out.println("Done!!");
+           System.out.println("Done!!");*/
+           TypedQuery query=session.createQuery("FROM Student S");
+           List<Student> list=query.getResultList();
+           if(list.isEmpty())
+           {
+               throw new RuntimeException("list is empty");
+           }
+
 
        }
        catch (Exception e)
        {
-           e.printStackTrace();
+           System.err.println(e.getMessage());
        }
     }
 }
