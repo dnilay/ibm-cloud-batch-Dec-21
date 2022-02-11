@@ -1,16 +1,16 @@
 package org.example;
 
 import org.example.config.SpringConfig;
-import org.example.model.Student;
+import org.example.model.Employee;
+import org.example.model.EmployeeType;
+//import org.example.model.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Hello world!
@@ -44,8 +44,8 @@ public class App
 
            //commit the transaction
            session.getTransaction().commit();*/
-           Student student=session.find(Student.class,2);
-         /*  if(student==null)
+         /*  Student student=session.find(Student.class,2);
+         *//*  if(student==null)
            {
                throw new IllegalArgumentException("student not found");
            }
@@ -53,7 +53,7 @@ public class App
            session.getTransaction().begin();
            session.delete(student);
            session.getTransaction().commit();
-           System.out.println("Done!!");*/
+           System.out.println("Done!!");*//*
            TypedQuery query=session.createQuery("FROM Student S");
            List<Student> list=query.getResultList();
            if(list.isEmpty())
@@ -61,7 +61,15 @@ public class App
                throw new RuntimeException("list is empty");
            }
 
+*/
 
+
+           session.getTransaction().begin();
+           Employee employee=new Employee(new Random().nextInt(1000), UUID.randomUUID().toString(),"Marry Public",10000.0, EmployeeType.CONTRACT_EMPLOYEE);
+           session.persist(employee);
+           session.getTransaction().commit();
+           System.out.println("saved...");
+           System.out.println(employee);
        }
        catch (Exception e)
        {
