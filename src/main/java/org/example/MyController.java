@@ -57,12 +57,13 @@ public class MyController extends HttpServlet {
 
         if (!errors.isEmpty())
         {
-
-            requestDispatcher = request.getRequestDispatcher("error_page.html");
+            request.setAttribute("ERROR",errors);
+            requestDispatcher = request.getRequestDispatcher("error_page.jsp");
         }
         else
         {
-            requestDispatcher = request.getRequestDispatcher("success_page.html");
+            request.setAttribute("LEAGUE",new League(leagueName,leagueYear,leagueSeason));
+            requestDispatcher = request.getRequestDispatcher("success_page.jsp");
         }
         requestDispatcher.forward(request,response);
 
