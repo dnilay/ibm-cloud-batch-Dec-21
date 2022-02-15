@@ -3,26 +3,22 @@ package org.example.controller;
 import org.example.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/students")
 public class StudentController {
 
     @GetMapping("/showForm")
-    public String showForm()
+    public String showForm(Model theModel)
     {
-        return "show-form";
+        Student student=new Student();
+        theModel.addAttribute("student",student);
+        return "show-formv1";
     }
     @PostMapping("/processForm")
-public String processForm(@RequestParam("name") String name, @RequestParam("address") String address, Model theModel)
+public String processForm(@ModelAttribute("student") Student student)
 {
-    Student student=new Student(name,address);
-    theModel.addAttribute("STUDENT",student);
-
     return "process-form";
 }
 

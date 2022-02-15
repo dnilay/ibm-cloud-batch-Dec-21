@@ -12,8 +12,8 @@
     <title>process-form</title>
 </head>
 <body>
-Hello ${STUDENT.studentName}<br/>
-Your Address Is: ${STUDENT.studentAddress}
+Hello ${student.studentName}<br/>
+Your Address Is: ${student.studentAddress}
 hello
 </body>
 </html>
