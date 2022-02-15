@@ -11,17 +11,17 @@ public class HomeController {
     @RequestMapping("/")
     public String goToHome()
     {
-        return "welcome";
+        return "index-page";
     }
-    @RequestMapping("/hello")
+   /* @RequestMapping("/hello")
     public String sayHello()
     {
         return "home";
     }
-    @PostMapping("/displayForm")
+    @PostMapping("/showForm")
     public String displayForm(@RequestParam("t1") String name, Model theModel)
     {
         theModel.addAttribute("NAME",name.toUpperCase());
         return "showData";
-    }
+    }*/
 }
