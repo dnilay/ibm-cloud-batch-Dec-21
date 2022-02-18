@@ -6,5 +6,7 @@ import com.example.demo.model.Customer;
 
 public interface CustomerRepository {
 	public List<Customer> getAllCustomer();
+	
+	public Customer createCustomer(Customer customer);
 
 }

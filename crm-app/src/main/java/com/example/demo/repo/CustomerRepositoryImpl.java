@@ -1,6 +1,7 @@
 package com.example.demo.repo;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.TypedQuery;
 
@@ -30,6 +31,17 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		Session session=sessionFactory.openSession();
 		TypedQuery<Customer> query=session.createQuery("FROM Customer C",Customer.class);
 		return query.getResultList();
+	}
+
+	@Override
+	@Transactional
+	public Customer createCustomer(Customer customer) {
+		customer.setId(new Random().nextInt(1000));
+		Session session=sessionFactory.openSession();
+		session.getTransaction().begin();
+		session.persist(customer);
+		session.getTransaction().commit();
+		return customer;
 	}
 
 }
