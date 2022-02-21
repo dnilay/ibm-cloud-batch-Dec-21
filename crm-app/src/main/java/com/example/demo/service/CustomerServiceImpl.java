@@ -30,4 +30,10 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerRepository.findAll();
 	}
 
+	@Override
+	public Customer getCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		return customerRepository.getById(id);
+	}
+
 }

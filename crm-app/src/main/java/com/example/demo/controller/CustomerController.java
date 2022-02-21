@@ -1,29 +1,36 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 
 @Controller
+@RequestMapping
 public class CustomerController {
 
-	private final CustomerService customerService;
-
+	// need to inject our customer service
 	@Autowired
-	public CustomerController(CustomerService customerService) {
-
-		this.customerService = customerService;
-	}
+	private CustomerService customerService;
 
 	@GetMapping("/")
-	public String displayAllCustomers(Model theModel) {
-		theModel.addAttribute("customers", customerService.getAllCustomers());
+	public String listCustomers(Model theModel) {
+
+		// get customers from the service
+		List<Customer> theCustomers = customerService.getAllCustomers();
+
+		// add the customers to the model
+		theModel.addAttribute("customers", theCustomers);
+
 		return "list-customers";
 	}
 
@@ -45,5 +52,18 @@ public class CustomerController {
 		customerService.createCustomer(theCustomer);
 
 		return "redirect:/";
+	}
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("customerId") int theId, Model theModel) {
+
+		// get the customer from our service
+		Customer theCustomer = customerService.getCustomer(theId);
+
+		// set customer as a model attribute to pre-populate the form
+		theModel.addAttribute("customer", theCustomer);
+
+		// send over to our form
+		return "customer-form";
 	}
 }
