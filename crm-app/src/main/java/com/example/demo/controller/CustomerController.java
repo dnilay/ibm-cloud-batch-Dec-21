@@ -18,9 +18,12 @@ import com.example.demo.service.CustomerService;
 @RequestMapping
 public class CustomerController {
 
-	// need to inject our customer service
+	private final CustomerService customerService;
+
 	@Autowired
-	private CustomerService customerService;
+	public CustomerController(CustomerService customerService) {
+		this.customerService = customerService;
+	}
 
 	@GetMapping("/")
 	public String listCustomers(Model theModel) {
@@ -65,5 +68,14 @@ public class CustomerController {
 
 		// send over to our form
 		return "customer-form";
+	}
+
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int theId) {
+
+		// delete the customer
+		customerService.deleteCustomer(theId);
+
+		return "redirect:/";
 	}
 }
