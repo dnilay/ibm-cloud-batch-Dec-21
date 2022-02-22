@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Employee;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -29,11 +26,23 @@ public class EmployeeController {
     @GetMapping("/employees")
     public Collection<Employee> getEmployee()
     {
+
         return employeeService.getAllEmployees();
     }
     @PostMapping("/employees")
     public Employee createEmployee(@RequestBody Employee employee)
     {
         return employeeService.createEmployee(employee);
+    }
+    @GetMapping("/employees/{id}")
+    public Employee findEmployee(@PathVariable("id") Integer id)
+    {
+        return employeeService.findEmployeeById(id);
+    }
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployee(@PathVariable("id") Integer id)
+    {
+        employeeService.deleteEmployeeById(id);
+        return "deletion successful";
     }
 }

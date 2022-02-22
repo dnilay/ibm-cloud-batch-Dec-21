@@ -24,6 +24,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public Collection<Employee> getAllEmployees() {
+        System.out.println(map);
         return map.values();
+    }
+
+    @Override
+    public Employee findEmployeeById(Integer id) {
+        return map.get(id);
+    }
+
+    @Override
+    public void deleteEmployeeById(Integer id) {
+
+        map.remove(id);
     }
 }

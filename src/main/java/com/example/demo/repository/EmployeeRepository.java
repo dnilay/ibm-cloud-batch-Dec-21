@@ -10,5 +10,7 @@ public interface EmployeeRepository {
 
     public Employee createEmployee(Employee employee);
     public Collection<Employee> getAllEmployees();
+    public Employee findEmployeeById(Integer id);
+    public void deleteEmployeeById(Integer id);
 
 }
