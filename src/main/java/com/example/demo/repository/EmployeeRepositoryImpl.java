@@ -38,4 +38,12 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
         map.remove(id);
     }
+
+    @Override
+    public Employee updateEmployee(Employee employee, Integer id) {
+        Employee tempEmployee=findEmployeeById(id);
+        tempEmployee.setEmployeeId(employee.getEmployeeId());
+        tempEmployee.setEmployeeName(employee.getEmployeeName());
+        return tempEmployee;
+    }
 }

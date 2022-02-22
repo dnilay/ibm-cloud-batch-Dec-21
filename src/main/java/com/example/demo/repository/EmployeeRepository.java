@@ -12,5 +12,6 @@ public interface EmployeeRepository {
     public Collection<Employee> getAllEmployees();
     public Employee findEmployeeById(Integer id);
     public void deleteEmployeeById(Integer id);
+    public Employee updateEmployee(Employee employee,Integer id);
 
 }
