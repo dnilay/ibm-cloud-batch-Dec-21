@@ -8,6 +8,11 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -27,6 +32,26 @@ public class UserServiceImpl implements UserService{
         StringBuilder stringBuilder=new StringBuilder(userDto.getPassword());
         userEntity.setEncryptedPassword(stringBuilder.reverse().toString());
         userEntity=userRepository.save(userEntity);
+        return modelMapper.map(userEntity,UserDto.class);
+    }
+
+    @Override
+    public List<UserDto> getUsers() {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+       List<UserDto> list=new ArrayList<>();
+        Iterable<UserEntity> iterable= userRepository.findAll();
+       Iterator<UserEntity> iterator= iterable.iterator();
+       while (iterator.hasNext())
+       {
+           list.add(modelMapper.map(iterator.next(),UserDto.class));
+       }
+        return list;
+    }
+
+    @Override
+    public UserDto findUserByUserId(String userId) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+       UserEntity userEntity= userRepository.findByUserId(userId);
         return modelMapper.map(userEntity,UserDto.class);
     }
 }

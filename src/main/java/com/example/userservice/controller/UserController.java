@@ -8,10 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -33,5 +33,24 @@ public class UserController {
         userDto.setUserId(UUID.randomUUID().toString());
         userDto=userService.createUser(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(userDto,UserResponseModel.class));
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserResponseModel>> getUsers()
+    {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        List<UserResponseModel> list=new ArrayList<>();
+        List<UserDto> dtos=userService.getUsers();
+        for (UserDto d:dtos)
+        {
+            list.add(modelMapper.map(d,UserResponseModel.class));
+        }
+        return ResponseEntity.ok(list);
+    }
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<UserResponseModel> findUserByUserId(@PathVariable("userId") String userId)
+    {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return ResponseEntity.ok(modelMapper.map(userService.findUserByUserId(userId),UserResponseModel.class));
     }
 }
