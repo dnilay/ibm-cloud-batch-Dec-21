@@ -10,7 +10,6 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -64,5 +63,11 @@ public class UserController {
     {
         userService.deleteUserByUserId(userId);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PutMapping("/users/{email}")
+    public ResponseEntity<UserResponseModel> updateUserByEmail(@RequestBody UserRequestModel userRequestModel,@PathVariable("email") String email)
+    {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.updateUserByEmail(userRequestModel,email));
     }
 }

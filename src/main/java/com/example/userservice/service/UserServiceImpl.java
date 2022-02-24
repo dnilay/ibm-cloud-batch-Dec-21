@@ -5,6 +5,9 @@ import com.example.userservice.entity.UserEntity;
 import com.example.userservice.exception.EmptyListException;
 import com.example.userservice.exception.UserNotFoundException;
 import com.example.userservice.repo.UserRepository;
+import com.example.userservice.ui.UserRequestModel;
+import com.example.userservice.ui.UserResponseModel;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +70,12 @@ public class UserServiceImpl implements UserService{
         return userEntity;
     }
 
+    private UserEntity findUserByEmail(String email)
+    {
+        UserEntity userEntity=userRepository.findByEmail(email);
+        return userEntity;
+    }
+
     @Override
     public void deleteUserByUserId(String userId) {
 
@@ -78,5 +87,20 @@ public class UserServiceImpl implements UserService{
 
         userRepository.delete(userEntity);
 
+    }
+
+    @Override
+    public UserResponseModel updateUserByEmail(UserRequestModel userRequestModel, String email) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        UserEntity entity=findUserByEmail(email);
+        if (entity==null)
+        {
+            throw new UserNotFoundException("user with "+email+" not found");
+        }
+        entity.setFirstName(userRequestModel.getFirstName());
+        entity.setLastName(userRequestModel.getLastName());
+        entity.setEmail(userRequestModel.getEmail());
+        userRepository.save(entity);
+        return modelMapper.map(entity,UserResponseModel.class);
     }
 }

@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<UserEntity,Integer> {
     @Query
     public UserEntity findByUserId(String userId);
+
+    public UserEntity findByEmail(String email);
 }
