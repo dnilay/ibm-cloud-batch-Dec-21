@@ -10,4 +10,6 @@ public interface UserService {
     public UserDto createUser(UserDto userDto);
     public List<UserDto> getUsers();
     public UserDto findUserByUserId(String userId);
+    public void deleteUserByUserId(String userId);
+
 }

@@ -1,6 +1,7 @@
 package com.example.userservice.controller;
 
 import com.example.userservice.dto.UserDto;
+import com.example.userservice.exception.EmptyListException;
 import com.example.userservice.service.UserService;
 import com.example.userservice.ui.UserRequestModel;
 import com.example.userservice.ui.UserResponseModel;
@@ -45,6 +46,10 @@ public class UserController {
         {
             list.add(modelMapper.map(d,UserResponseModel.class));
         }
+        if(list.isEmpty())
+        {
+            throw new EmptyListException("user list is empty");
+        }
         return ResponseEntity.ok(list);
     }
     @GetMapping("/users/{userId}")
@@ -52,5 +57,12 @@ public class UserController {
     {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return ResponseEntity.ok(modelMapper.map(userService.findUserByUserId(userId),UserResponseModel.class));
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<?> deleteUserByUserId(@PathVariable("userId") String userId)
+    {
+        userService.deleteUserByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

@@ -2,6 +2,8 @@ package com.example.userservice.service;
 
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.entity.UserEntity;
+import com.example.userservice.exception.EmptyListException;
+import com.example.userservice.exception.UserNotFoundException;
 import com.example.userservice.repo.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService{
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
        List<UserDto> list=new ArrayList<>();
         Iterable<UserEntity> iterable= userRepository.findAll();
+
        Iterator<UserEntity> iterator= iterable.iterator();
        while (iterator.hasNext())
        {
@@ -51,7 +54,29 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto findUserByUserId(String userId) {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-       UserEntity userEntity= userRepository.findByUserId(userId);
+       UserEntity userEntity= findUserId(userId);
+        if(userEntity==null)
+        {
+            throw new UserNotFoundException("user with id: "+userId+" not found");
+        }
         return modelMapper.map(userEntity,UserDto.class);
+    }
+    private UserEntity findUserId(String userId) {
+
+        UserEntity userEntity= userRepository.findByUserId(userId);
+        return userEntity;
+    }
+
+    @Override
+    public void deleteUserByUserId(String userId) {
+
+        UserEntity userEntity=findUserId(userId);
+        if(userEntity==null)
+        {
+            throw new UserNotFoundException("user with id: "+userId+" not found");
+        }
+
+        userRepository.delete(userEntity);
+
     }
 }
