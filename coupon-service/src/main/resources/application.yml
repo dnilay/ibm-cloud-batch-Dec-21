@@ -1,7 +1,6 @@
 server:
-  port: 0
-  servlet:
-    context-path: /coupon-service
+  port: 8081
+
 spring:
   application:
     name: coupon-service-ws
