@@ -1,19 +1,21 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.model.CouponEntity;
-import com.example.demo.repo.CouponRepository;
+import com.example.demo.model.model.Coupon;
+import com.example.demo.model.repos.CouponRepo;
 
 @SpringBootApplication
-public class CouponServiceApplication implements CommandLineRunner{
-	private final CouponRepository couponRepository;
+public class CouponServiceApplication implements CommandLineRunner {
+	private final CouponRepo couponRepo;
 
-	public CouponServiceApplication(CouponRepository couponRepository) {
-		
-		this.couponRepository = couponRepository;
+	public CouponServiceApplication(CouponRepo couponRepo) {
+
+		this.couponRepo = couponRepo;
 	}
 
 	public static void main(String[] args) {
@@ -22,10 +24,10 @@ public class CouponServiceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		couponRepository.save(new CouponEntity(1, "code-1", 10.0));
-		couponRepository.save(new CouponEntity(2, "code-11", 11.0));
-		couponRepository.save(new CouponEntity(3, "code-111", 12.0));
-		
+		couponRepo.save(new Coupon(1L, "CODE-A", new BigDecimal(10), "10-May-2022"));
+		couponRepo.save(new Coupon(2L, "CODE-B", new BigDecimal(11), "11-May-2022"));
+		couponRepo.save(new Coupon(3L, "CODE-C", new BigDecimal(12), "12-May-2022"));
+
 	}
 
 }
