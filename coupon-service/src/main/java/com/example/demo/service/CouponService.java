@@ -8,5 +8,7 @@ public interface CouponService {
 	
 	public List<Coupon> getAllCoupons();
 	public Coupon getCouponByCode(String code);
+	
+	public Coupon createCoupon(Coupon coupon);
 
 }

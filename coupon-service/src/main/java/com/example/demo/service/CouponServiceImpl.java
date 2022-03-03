@@ -32,4 +32,11 @@ public class CouponServiceImpl implements CouponService {
 		return couponRepo.findByCode(code);
 	}
 
+
+	@Override
+	public Coupon createCoupon(Coupon coupon) {
+		
+		return couponRepo.save(coupon);
+	}
+
 }
