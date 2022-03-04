@@ -6,6 +6,11 @@ spring:
   devtools:
     restart:
       enabled: true
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:9999
 eureka:
   client:
     register-with-eureka: true

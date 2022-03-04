@@ -17,6 +17,11 @@ spring:
       path: /h2
       settings:
         web-allow-others: true
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:9999
 eureka:
   client:
     register-with-eureka: true
