@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: discovery-ws
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:9999
 eureka:
   client:
     service-url:
